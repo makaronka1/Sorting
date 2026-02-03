@@ -8,6 +8,10 @@ async function bubbleSorting(arr, containersArray) {
   
   while (!isStopped) {
     for (let i = 0; i < arr.length - 1; i++) {
+
+      if (isSorted(arr)) {
+        isStopped = true;
+      }
       
       if (arr[i] > arr[i + 1]) {
         const savedValue = arr[i + 1];
@@ -65,13 +69,6 @@ function setStartOrder () {
   return valuesContainers;
 }
 
-async function startSorting () {
-  await setHeight();
-  let valuesContainers = setStartOrder();
-  let array = getArray();
-  bubbleSorting(array, valuesContainers);
-}
-
 function sortValueContainers() {
   const parentContainer = document.querySelector('.values-container');
   const valueElements = Array.from(parentContainer.querySelectorAll('.value'));
@@ -95,6 +92,61 @@ async function setHeight() {
 
   await new Promise(resolve => setTimeout(resolve, 500));
 }
+
+function getValuesFromInput () {
+  let inputs = document.querySelectorAll('.value-input');
+  let valuesFromInputs = [];
+
+  for (let input of inputs) {
+    valuesFromInputs.push(input.value);
+  }
+
+  return valuesFromInputs;
+}
+
+function setValuesFromInput () {
+  let values = getValuesFromInput();
+  let valueContainers = document.querySelectorAll('.value-number');
+
+  for (let i = 0; i < values.length; i++) {
+    valueContainers[i].textContent = values[i];
+  }
+}
+
+function toggleVisibilityValues () {
+  let inputs = document.querySelectorAll('.value-input');
+
+  for (let input of inputs) {
+    input.classList.toggle('hidden');
+  }
+}
+
+function toggleVisibilityValues () {
+  let inputs = document.querySelectorAll('.value-number');
+
+  for (let input of inputs) {
+    input.classList.toggle('hidden');
+  }
+}
+
+function clearValues() {
+  let valueContainers = document.querySelectorAll('.value-number');
+
+  for (let value of valueContainers) {
+    value.textContent = '';
+  }
+}
+
+async function startSorting () {
+  setValuesFromInput();
+  toggleVisibilityValues();
+  await setHeight();
+  let valuesContainers = setStartOrder();
+  let array = getArray();
+  bubbleSorting(array, valuesContainers);
+}
+
+toggleVisibilityValues();
 
 let sortBtn = document.querySelector('.button');
 sortBtn.addEventListener('click', startSorting);
