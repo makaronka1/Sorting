@@ -28,7 +28,7 @@ async function bubbleSorting(arr, containersArray) {
           isStopped = true;
         }
         
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
     }
   }
@@ -45,7 +45,7 @@ function isSorted (arr) {
   return true;
 }
 
-function gettingArray () {
+function getArray () {
   let array = [];
   let values = document.querySelectorAll('.value-number');
   for (let value of values) {
@@ -66,9 +66,32 @@ function setStartOrder () {
 }
 
 function startSorting () {
+  setHeight();
   let valuesContainers = setStartOrder();
-  let array = gettingArray();
+  let array = getArray();
   bubbleSorting(array, valuesContainers);
+}
+
+function sortValueContainers() {
+  const parentContainer = document.querySelector('.values-container');
+  const valueElements = Array.from(parentContainer.querySelectorAll('.value'));
+  
+  valueElements.sort((a, b) => {
+    const aValue = parseInt(a.querySelector('.value-number').textContent.trim());
+    const bValue = parseInt(b.querySelector('.value-number').textContent.trim());
+    return bValue - aValue;
+  });
+  
+  return valueElements;
+}
+
+function setHeight() {
+  let sortedContainerValues = sortValueContainers();
+
+  for (let i = 0; i < sortedContainerValues.length; i++) {
+    let height = 100 - (i * 15) + '%';
+    sortedContainerValues[i].style.height = height;
+  }
 }
 
 let sortBtn = document.querySelector('.button');
