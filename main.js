@@ -65,8 +65,8 @@ function setStartOrder () {
   return valuesContainers;
 }
 
-function startSorting () {
-  setHeight();
+async function startSorting () {
+  await setHeight();
   let valuesContainers = setStartOrder();
   let array = getArray();
   bubbleSorting(array, valuesContainers);
@@ -85,13 +85,15 @@ function sortValueContainers() {
   return valueElements;
 }
 
-function setHeight() {
+async function setHeight() {
   let sortedContainerValues = sortValueContainers();
 
   for (let i = 0; i < sortedContainerValues.length; i++) {
     let height = 100 - (i * 15) + '%';
     sortedContainerValues[i].style.height = height;
   }
+
+  await new Promise(resolve => setTimeout(resolve, 500));
 }
 
 let sortBtn = document.querySelector('.button');
