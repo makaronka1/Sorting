@@ -86,8 +86,13 @@ async function setHeight() {
   let sortedContainerValues = sortValueContainers();
 
   for (let i = 0; i < sortedContainerValues.length; i++) {
-    let height = 100 - (i * 15) + '%';
-    sortedContainerValues[i].style.height = height;
+    if (i > 0 && sortedContainerValues[i].querySelector('.value-number').textContent == sortedContainerValues[i - 1].querySelector('.value-number').textContent) {
+      sortedContainerValues[i].style.height = sortedContainerValues[i - 1].style.height;
+    } else {
+      let height = 100 - (i * 15) + '%';
+      sortedContainerValues[i].style.height = height;
+    }
+      
   }
 
   await new Promise(resolve => setTimeout(resolve, 500));
@@ -113,7 +118,7 @@ function setValuesFromInput () {
   }
 }
 
-function toggleVisibilityValues () {
+function toggleVisibilityInputs () {
   let inputs = document.querySelectorAll('.value-input');
 
   for (let input of inputs) {
@@ -139,6 +144,7 @@ function clearValues() {
 
 async function startSorting () {
   setValuesFromInput();
+  toggleVisibilityInputs();
   toggleVisibilityValues();
   await setHeight();
   let valuesContainers = setStartOrder();
