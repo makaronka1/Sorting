@@ -1,3 +1,5 @@
+const sortBtn = document.querySelector('.sort-button');
+const resetBtn = document.querySelector('.reset-button');
 
 async function bubbleSorting(arr, containersArray) {
   if (containersArray && typeof containersArray.forEach === 'function' && !Array.isArray(containersArray)) {
@@ -30,6 +32,7 @@ async function bubbleSorting(arr, containersArray) {
         
         if (isSorted(arr)) {
           isStopped = true;
+          toggleVisibilityBtn(resetBtn);
         }
         
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -134,6 +137,10 @@ function toggleVisibilityValues () {
   }
 }
 
+function toggleVisibilityBtn (button) {
+  button.classList.toggle('hidden');
+}
+
 function clearValues() {
   let valueContainers = document.querySelectorAll('.value-number');
 
@@ -142,7 +149,34 @@ function clearValues() {
   }
 }
 
+function clearStyles () {
+  let containers = document.querySelectorAll('.value');
+
+  for (let container of containers) {
+    container.removeAttribute('style');
+  }
+}
+
+function clearInputs () {
+  let inputs = document.querySelectorAll('.value-input');
+
+  for (let input of inputs) {
+    input.value = '';
+  }
+}
+
+function reset () {
+  clearValues();
+  toggleVisibilityInputs();
+  toggleVisibilityValues();
+  clearStyles();
+  clearInputs();
+  toggleVisibilityBtn(resetBtn);
+  toggleVisibilityBtn(sortBtn);
+}
+
 async function startSorting () {
+  toggleVisibilityBtn(sortBtn);
   setValuesFromInput();
   toggleVisibilityInputs();
   toggleVisibilityValues();
@@ -154,6 +188,8 @@ async function startSorting () {
 
 toggleVisibilityValues();
 
-let sortBtn = document.querySelector('.button');
+toggleVisibilityBtn(resetBtn);
+
 sortBtn.addEventListener('click', startSorting);
+resetBtn.addEventListener('click', reset);
 

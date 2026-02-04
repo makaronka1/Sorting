@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+h1 {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -48,6 +53,10 @@
   font-size: 20px;
   width: 80%;
   text-align: center;
+}
+
+.button-container {
+  height: 39px;
 }
 
 .button {
