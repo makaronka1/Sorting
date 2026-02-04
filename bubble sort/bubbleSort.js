@@ -15,6 +15,7 @@ async function bubbleSorting(arr, containersArray) {
       }
       
       if (arr[i] > arr[i + 1]) {
+        //запоминаем значение с которым меняемся
         const savedValue = arr[i + 1];
         const savedContainer = containersArray[i + 1];
         const savedOrder = containersArray[i + 1].style.order;
@@ -52,7 +53,7 @@ function reset () {
   toggleVisibilityBtn(sortBtn);
 }
 
-async function startSorting () {
+async function startBubbleSorting () {
   toggleVisibilityBtn(sortBtn);
   setValuesFromInput();
   toggleVisibilityInputs();
@@ -63,5 +64,5 @@ async function startSorting () {
   bubbleSorting(array, valuesContainers);
 }
 
-sortBtn.addEventListener('click', startSorting);
+//sortBtn.addEventListener('click', startBubbleSorting);
 resetBtn.addEventListener('click', reset);
