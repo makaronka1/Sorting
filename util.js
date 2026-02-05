@@ -128,5 +128,21 @@ async function setHeight() {
   await new Promise(resolve => setTimeout(resolve, 500));
 }
 
+function swapElements (firstIndex, secondIndex, containersArray, array) {
+  const savedValue = array[firstIndex];
+  const savedContainer = containersArray[firstIndex];
+  const savedOrder = containersArray[firstIndex].style.order;
+        
+  array[firstIndex] = array[secondIndex];
+  array[secondIndex] = savedValue;
+        
+  const currentOrder = containersArray[secondIndex].style.order;
+  containersArray[secondIndex].style.order = savedOrder;
+  containersArray[firstIndex].style.order = currentOrder;
+        
+  containersArray[firstIndex] = containersArray[secondIndex];
+  containersArray[secondIndex] = savedContainer;
+}
+
 toggleVisibilityValues();
 toggleVisibilityBtn(resetBtn);

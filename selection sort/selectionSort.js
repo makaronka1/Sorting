@@ -10,19 +10,20 @@ async function selectionSort (arr, containersArray) {
 
     if (minValueIndex !== 0) {
       //запоминаем значение с которое меняем с i
-      const savedValue = arrCopy[minValueIndex + i];
-      const savedContainer = containersArray[minValueIndex + i];
-      const savedOrder = containersArray[minValueIndex + i].style.order;
+      // const savedValue = arrCopy[minValueIndex + i];
+      // const savedContainer = containersArray[minValueIndex + i];
+      // const savedOrder = containersArray[minValueIndex + i].style.order;
 
-      arrCopy[minValueIndex + i] = arr[i];
-      arrCopy[i] = savedValue;
+      // arrCopy[minValueIndex + i] = arr[i];
+      // arrCopy[i] = savedValue;
 
-      const currentOrder = containersArray[i].style.order;
-      containersArray[i].style.order = savedOrder;
-      containersArray[minValueIndex + i].style.order = currentOrder;
+      // const currentOrder = containersArray[i].style.order;
+      // containersArray[i].style.order = savedOrder;
+      // containersArray[minValueIndex + i].style.order = currentOrder;
 
-      containersArray[minValueIndex + i] = containersArray[i];
-      containersArray[i] = savedContainer;
+      // containersArray[minValueIndex + i] = containersArray[i];
+      // containersArray[i] = savedContainer;
+      swapElements(minValueIndex + i, i, containersArray, arrCopy);
     } else {
       continue;
     }
@@ -44,4 +45,4 @@ async function startSelectionSorting () {
   selectionSort(array, valuesContainers);
 }
 
-sortBtn.addEventListener('click', startSelectionSorting);
+//sortBtn.addEventListener('click', startSelectionSorting);
