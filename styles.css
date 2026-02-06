@@ -5,7 +5,6 @@
 
 h1 {
   font-size: 70px;
-  margin-bottom: 20px;
   text-align: center;
   width: 500px;
 }
@@ -16,6 +15,70 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.arrow-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  cursor: pointer;
+}
+
+.arrow-container-incline {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.arrow-container-vertical {
+  display: flex;
+  position: relative;
+}
+
+.vertical-line {
+  border: 3px solid black;
+  border-radius: 100px;
+  background-color: black;
+  height: 81px;
+  position: absolute;
+  right: 6px;
+  bottom: -3px;
+}
+
+.top-line {
+  border: 3px solid black;
+  width: 70px;
+  transform: rotate(145deg);
+  border-radius: 100px;
+  background-color: black;
+}
+
+.bot-line {
+  border: 3px solid black;
+  width: 70px;
+  transform: rotate(-145deg);
+  border-radius: 100px;
+  background-color: black;
+}
+
+.vertical-line.right {
+  right: -11px;
+  bottom: -2px;
+}
+
+.top-line.right {
+  transform: rotate(-145deg);
+}
+
+.bot-line.right {
+  transform: rotate(145deg);
 }
 
 .values-container {
