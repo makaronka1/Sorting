@@ -1,5 +1,4 @@
-const sortBtn = document.querySelector('.sort-button');
-const resetBtn = document.querySelector('.reset-button');
+
 
 function getValuesFromInput () {
   let inputs = document.querySelectorAll('.value-input');
@@ -175,6 +174,9 @@ function setStartPosition () {
   return valuesContainers;
 }
 
+function getSortMethod () {
+  return document.querySelector('h1').textContent;
+}
+
 setStartPosition();
 toggleVisibilityValues();
-toggleVisibilityBtn(resetBtn);

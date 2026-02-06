@@ -6,6 +6,8 @@
 h1 {
   font-size: 70px;
   margin-bottom: 20px;
+  text-align: center;
+  width: 500px;
 }
 
 .container {

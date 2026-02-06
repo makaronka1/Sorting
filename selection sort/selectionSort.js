@@ -25,16 +25,3 @@ async function selectionSort (arr, containersArray) {
   toggleVisibilityBtn(resetBtn);
   return arrCopy;
 }
-
-async function startSelectionSorting () {
-  toggleVisibilityBtn(sortBtn);
-  setValuesFromInput();
-  toggleVisibilityInputs();
-  toggleVisibilityValues();
-  await setHeight();
-  let valuesContainers = setStartPosition();
-  let array = getArray();
-  selectionSort(array, valuesContainers);
-}
-
-//sortBtn.addEventListener('click', startSelectionSorting);
