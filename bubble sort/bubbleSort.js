@@ -12,6 +12,7 @@ async function bubbleSorting(arr, containersArray) {
 
       if (isSorted(arr)) {
         isStopped = true;
+        toggleVisibilityBtn(resetBtn);
       }
       
       if (arr[i] > arr[i + 1]) {
@@ -29,8 +30,8 @@ async function bubbleSorting(arr, containersArray) {
         
         // containersArray[i + 1] = containersArray[i];
         // containersArray[i] = savedContainer;
-        swapElements(i + 1, i, containersArray, arr);
-
+        //swapElements(i + 1, i, containersArray, arr);
+        swapPosition(i + 1, i, containersArray, arr);
         if (isSorted(arr)) {
           isStopped = true;
           toggleVisibilityBtn(resetBtn);
@@ -49,6 +50,7 @@ function reset () {
   toggleVisibilityInputs();
   toggleVisibilityValues();
   clearStyles();
+  setStartPosition();
   clearInputs();
   toggleVisibilityBtn(resetBtn);
   toggleVisibilityBtn(sortBtn);
@@ -60,7 +62,7 @@ async function startBubbleSorting () {
   toggleVisibilityInputs();
   toggleVisibilityValues();
   await setHeight();
-  let valuesContainers = setStartOrder();
+  let valuesContainers = setStartPosition();
   let array = getArray();
   bubbleSorting(array, valuesContainers);
 }

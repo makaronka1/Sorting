@@ -6,7 +6,11 @@ function getValuesFromInput () {
   let valuesFromInputs = [];
 
   for (let input of inputs) {
-    valuesFromInputs.push(parseInt(input.value));
+    if (input.value != '') {
+      valuesFromInputs.push(parseInt(input.value));
+    } else {
+      valuesFromInputs.push(0);
+    }
   }
 
   return valuesFromInputs;
@@ -144,5 +148,33 @@ function swapElements (firstIndex, secondIndex, containersArray, array) {
   containersArray[secondIndex] = savedContainer;
 }
 
+function swapPosition (firstIndex, secondIndex, containersArray, array) {
+  const savedValue = array[firstIndex];
+  const savedContainer = containersArray[firstIndex];
+  const savedLeft = containersArray[firstIndex].style.left;
+
+  array[firstIndex] = array[secondIndex];
+  array[secondIndex] = savedValue;
+        
+  const currentLeft = containersArray[secondIndex].style.left;
+  containersArray[secondIndex].style.left = savedLeft;
+  containersArray[firstIndex].style.left = currentLeft;
+        
+  containersArray[firstIndex] = containersArray[secondIndex];
+  containersArray[secondIndex] = savedContainer;
+}
+
+function setStartPosition () {
+  let valuesContainers = document.querySelectorAll('.value');
+
+  for (let i = 0; i < valuesContainers.length; i++) {
+    let left = (i * 45) + ((i + 1) * 50) + 'px';
+    valuesContainers[i].style.left = left;
+  }
+
+  return valuesContainers;
+}
+
+setStartPosition();
 toggleVisibilityValues();
 toggleVisibilityBtn(resetBtn);

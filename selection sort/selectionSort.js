@@ -3,34 +3,26 @@ async function selectionSort (arr, containersArray) {
     containersArray = Array.from(containersArray);
   }
 
-  let arrCopy = [...arr]
+  let arrCopy = [...arr];
+
+  if (isSorted(arrCopy)) {
+    toggleVisibilityBtn(resetBtn);
+    return arrCopy;
+  }
+
   for (let i = 0; i < arrCopy.length - 1; i++) {
     let slicedArray = arrCopy.slice(i);
     let minValueIndex = getMinValueIndex(slicedArray);
 
     if (minValueIndex !== 0) {
-      //запоминаем значение с которое меняем с i
-      // const savedValue = arrCopy[minValueIndex + i];
-      // const savedContainer = containersArray[minValueIndex + i];
-      // const savedOrder = containersArray[minValueIndex + i].style.order;
-
-      // arrCopy[minValueIndex + i] = arr[i];
-      // arrCopy[i] = savedValue;
-
-      // const currentOrder = containersArray[i].style.order;
-      // containersArray[i].style.order = savedOrder;
-      // containersArray[minValueIndex + i].style.order = currentOrder;
-
-      // containersArray[minValueIndex + i] = containersArray[i];
-      // containersArray[i] = savedContainer;
-      swapElements(minValueIndex + i, i, containersArray, arrCopy);
+      swapPosition(minValueIndex + i, i, containersArray, arrCopy);
     } else {
       continue;
     }
 
     await new Promise(resolve => setTimeout(resolve, 500));
   }
-  
+  toggleVisibilityBtn(resetBtn);
   return arrCopy;
 }
 
@@ -40,7 +32,7 @@ async function startSelectionSorting () {
   toggleVisibilityInputs();
   toggleVisibilityValues();
   await setHeight();
-  let valuesContainers = setStartOrder();
+  let valuesContainers = setStartPosition();
   let array = getArray();
   selectionSort(array, valuesContainers);
 }
