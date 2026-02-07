@@ -2,7 +2,7 @@ const sortBtn = document.querySelector('.sort-button');
 const resetBtn = document.querySelector('.reset-button');
 const arrowBtns = document.querySelectorAll('.arrow-container');
 
-const sortType = ['Bubble sort', 'Selection sort'];
+const sortType = ['Bubble sort', 'Selection sort', 'Insertion sort'];
 
 toggleVisibilityBtn(resetBtn);
 
@@ -22,6 +22,8 @@ async function startSort () {
     bubbleSorting(array, valuesContainers);
   } else if (sortType == 'Selection sort') {
     selectionSort(array, valuesContainers);
+  } else if (sortType == 'Insertion sort') {
+    insertionSort(array, valuesContainers);
   }
 }
 

@@ -174,6 +174,15 @@ function setStartPosition () {
   return valuesContainers;
 }
 
+function recalculatePosition (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let left = (i * 45) + ((i + 1) * 50) + 'px';
+    arr[i].style.left = left;
+  }
+
+  return arr;
+}
+
 function getSortMethod () {
   return document.querySelector('h1').textContent;
 }
