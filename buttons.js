@@ -1,5 +1,6 @@
 const sortBtn = document.querySelector('.sort-button');
 const resetBtn = document.querySelector('.reset-button');
+const fillBtn = document.querySelector('.fill-button');
 const arrowBtns = document.querySelectorAll('.arrow-container');
 
 const sortType = ['Bubble sort', 'Selection sort', 'Insertion sort'];
@@ -9,6 +10,7 @@ toggleVisibilityBtn(resetBtn);
 async function startSort () {
   const sortType = getSortMethod();
   toggleVisibilityBtn(sortBtn);
+  toggleVisibilityBtn(fillBtn);
   toggleVisibilityBtn(arrowBtns[0]);
   toggleVisibilityBtn(arrowBtns[1]);
   setValuesFromInput();
@@ -36,6 +38,7 @@ function reset () {
   clearInputs();
   toggleVisibilityBtn(resetBtn);
   toggleVisibilityBtn(sortBtn);
+  toggleVisibilityBtn(fillBtn);
   toggleVisibilityBtn(arrowBtns[0]);
   toggleVisibilityBtn(arrowBtns[1]);
 }
@@ -60,8 +63,17 @@ function changeSortType (e) {
   }
 }
 
+function fillRandomValues () {
+  const inputs = document.querySelectorAll('.value-input');
+
+  for (let input of inputs) {
+    input.value = getRandomIntInRange();
+  }
+}
+
 arrowBtns[0].addEventListener('click', changeSortType);
 arrowBtns[1].addEventListener('click', changeSortType);
 
 resetBtn.addEventListener('click', reset);
 sortBtn.addEventListener('click', startSort);
+fillBtn.addEventListener('click', fillRandomValues);

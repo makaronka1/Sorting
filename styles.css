@@ -129,6 +129,7 @@ h1 {
 
 .button {
   padding: 10px 20px;
+  width: 75px;
 }
 
 .hidden {

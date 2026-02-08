@@ -1,5 +1,3 @@
-
-
 function getValuesFromInput () {
   let inputs = document.querySelectorAll('.value-input');
   let valuesFromInputs = [];
@@ -185,6 +183,12 @@ function recalculatePosition (arr) {
 
 function getSortMethod () {
   return document.querySelector('h1').textContent;
+}
+
+function getRandomIntInRange() {
+  const min = -99;
+  const max = 999;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 setStartPosition();
