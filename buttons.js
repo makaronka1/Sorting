@@ -26,6 +26,9 @@ async function startSort () {
     selectionSort(array, valuesContainers);
   } else if (sortType == 'Insertion sort') {
     insertionSort(array, valuesContainers);
+  } else if (sortType == 'Merge sort') {
+    await mergeSort(array, valuesContainers);
+    toggleVisibilityBtn(resetBtn);
   }
 }
 

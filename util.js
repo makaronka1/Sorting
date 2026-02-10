@@ -191,5 +191,49 @@ function getRandomIntInRange() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function highlightContainers (arr, color) {
+  for (let container of arr) {
+    container.style.backgroundColor = color;
+  }
+}
+
+async function repositionMergedElements  (resultNumber, resultContainer) {
+    let minLeft = Infinity;
+
+    highlightContainers(resultContainer, '#2196F3');
+    
+    for (let container of resultContainer) {
+      if (container && container.style.left) {
+          const leftValue = parseInt(container.style.left);
+          if (!isNaN(leftValue) && leftValue < minLeft) {
+              minLeft = leftValue;
+          }
+      }
+    }
+    
+    for (let i = 0; i < resultContainer.length; i++) {
+      const container = resultContainer[i];
+      if (container) {
+          const newLeft = minLeft + (i * 95);
+          container.style.left = newLeft + 'px';     
+          await delay(200);
+      }
+    }
+    
+    highlightContainers(resultContainer, '#4CAF50');
+
+    await delay(500);
+
+    
+    return {
+        resultNumber: resultNumber,
+        resultContainer: resultContainer
+    };
+}
+
+function delay (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 setStartPosition();
 toggleVisibilityValues();
