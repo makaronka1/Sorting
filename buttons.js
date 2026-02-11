@@ -2,6 +2,8 @@ const sortBtn = document.querySelector('.sort-button');
 const resetBtn = document.querySelector('.reset-button');
 const fillBtn = document.querySelector('.fill-button');
 const arrowBtns = document.querySelectorAll('.arrow-container');
+const addButton = document.querySelector('.add-button');
+const removeButton = document.querySelector('.remove-button');
 
 const sortType = ['Bubble sort', 'Selection sort', 'Insertion sort', 'Merge sort', 'Quick sort'];
 
@@ -11,6 +13,8 @@ async function startSort () {
   const sortType = getSortMethod();
   toggleVisibilityBtn(sortBtn);
   toggleVisibilityBtn(fillBtn);
+  toggleVisibilityBtn(addButton);
+  toggleVisibilityBtn(removeButton);
   toggleVisibilityBtn(arrowBtns[0]);
   toggleVisibilityBtn(arrowBtns[1]);
   setValuesFromInput();
@@ -47,6 +51,8 @@ function reset () {
   toggleVisibilityBtn(fillBtn);
   toggleVisibilityBtn(arrowBtns[0]);
   toggleVisibilityBtn(arrowBtns[1]);
+  toggleVisibilityBtn(addButton);
+  toggleVisibilityBtn(removeButton);
 }
 
 function changeSortType (e) {
@@ -83,3 +89,5 @@ arrowBtns[1].addEventListener('click', changeSortType);
 resetBtn.addEventListener('click', reset);
 sortBtn.addEventListener('click', startSort);
 fillBtn.addEventListener('click', fillRandomValues);
+addButton.addEventListener('click', addValueElement);
+removeButton.addEventListener('click', removeValueElement);

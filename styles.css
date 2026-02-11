@@ -82,7 +82,7 @@ h1 {
 }
 
 .values-container {
-  width: 700px;
+  min-width: 700px;
   height: 600px;
   background-color: gray;
   display: flex;
@@ -98,6 +98,7 @@ h1 {
   justify-content: space-between;
   align-items: flex-end;
   height: 80%;
+  min-width: 620px;
   width: 620px;
   position: relative;
 }

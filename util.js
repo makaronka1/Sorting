@@ -1,3 +1,5 @@
+const valuesContainerInner = document.querySelector('.values-container-inner');
+
 function getValuesFromInput () {
   let inputs = document.querySelectorAll('.value-input');
   let valuesFromInputs = [];
@@ -115,18 +117,20 @@ function sortValueContainers() {
 
 async function setHeight() {
   let sortedContainerValues = sortValueContainers();
-
-  for (let i = 0; i < sortedContainerValues.length; i++) {
-    if (i > 0 && sortedContainerValues[i].querySelector('.value-number').textContent == sortedContainerValues[i - 1].querySelector('.value-number').textContent) {
+  let total = sortedContainerValues.length;
+  
+  for (let i = 0; i < total; i++) {
+    if (i > 0 && sortedContainerValues[i].querySelector('.value-number').textContent === 
+                  sortedContainerValues[i - 1].querySelector('.value-number').textContent) {
       sortedContainerValues[i].style.height = sortedContainerValues[i - 1].style.height;
     } else {
-      let height = 100 - (i * 15) + '%';
-      sortedContainerValues[i].style.height = height;
+      // От 100% до 15% равномерно
+      let height = total === 1 ? 100 : 100 - (i * (85 / (total - 1)));
+      sortedContainerValues[i].style.height = height + '%';
     }
-      
   }
-
-  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  await delay(500);
 }
 
 function swapElements (firstIndex, secondIndex, containersArray, array) {
@@ -234,6 +238,47 @@ async function repositionMergedElements  (resultNumber, resultContainer) {
 function delay (ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function createValueElement () {
+  const valueDiv = document.createElement('div');
+  valueDiv.className = 'value';
+  
+  const input = document.createElement('input');
+  input.className = 'value-input';
+  input.type = 'text';
+  
+  const numberDiv = document.createElement('div');
+  numberDiv.className = 'value-number hidden';
+  
+  valueDiv.appendChild(input);
+  valueDiv.appendChild(numberDiv);
+
+  return valueDiv;
+}
+
+function addWidth () {
+  valuesContainerInner.style.width = valuesContainerInner.clientWidth + 95 + 'px';
+}
+
+function removeWidth () {
+  valuesContainerInner.style.width = valuesContainerInner.clientWidth - 95 + 'px';
+}
+
+function addValueElement () {
+  let elem = createValueElement();
+  valuesContainerInner.appendChild(elem);
+  if (document.querySelectorAll('.value-number').length > 6) {
+    addWidth();
+  }
+  setStartPosition();
+}
+
+function removeValueElement () {
+  valuesContainerInner.lastElementChild?.remove();
+  removeWidth();
+}
+
+
 
 setStartPosition();
 toggleVisibilityValues();
