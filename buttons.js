@@ -3,7 +3,7 @@ const resetBtn = document.querySelector('.reset-button');
 const fillBtn = document.querySelector('.fill-button');
 const arrowBtns = document.querySelectorAll('.arrow-container');
 
-const sortType = ['Bubble sort', 'Selection sort', 'Insertion sort', 'Merge sort'];
+const sortType = ['Bubble sort', 'Selection sort', 'Insertion sort', 'Merge sort', 'Quick sort'];
 
 toggleVisibilityBtn(resetBtn);
 
