@@ -124,7 +124,6 @@ async function setHeight() {
                   sortedContainerValues[i - 1].querySelector('.value-number').textContent) {
       sortedContainerValues[i].style.height = sortedContainerValues[i - 1].style.height;
     } else {
-      // От 100% до 15% равномерно
       let height = total === 1 ? 100 : 100 - (i * (85 / (total - 1)));
       sortedContainerValues[i].style.height = height + '%';
     }
