@@ -29,6 +29,9 @@ async function startSort () {
   } else if (sortType == 'Merge sort') {
     await mergeSort(array, valuesContainers);
     toggleVisibilityBtn(resetBtn);
+  } else if (sortType == 'Quick sort') {
+    await quickSort(array, valuesContainers);
+    toggleVisibilityBtn(resetBtn);
   }
 }
 
